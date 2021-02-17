@@ -1,5 +1,6 @@
 ﻿using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.CommandWpf;
+using System;
 using System.Threading.Tasks;
 
 namespace FrequencyAnalysis
@@ -10,7 +11,12 @@ namespace FrequencyAnalysis
 
         public RelayCommand<int> BlurGeneralCommand
         {
-            get => this.blurGeneralCommad ?? (this.blurGeneralCommad = new RelayCommand<int>(BlurGeneralCommandExecuted, (t) => !string.IsNullOrWhiteSpace(this.SelectedImagePath)));
+            get => this.blurGeneralCommad ?? (this.blurGeneralCommad = new RelayCommand<int>(BlurGeneralCommandExecuted));
+        }
+
+        private bool CanExecuteBlurGeneralCommand(int arg)
+        {
+            return !string.IsNullOrWhiteSpace(this.SelectedImagePath);
         }
 
         private async void BlurGeneralCommandExecuted(int blockSize)
@@ -32,5 +38,6 @@ namespace FrequencyAnalysis
                 this.SelectedImagePath = bitmapPath;
             }
         }
+
     }
 }

@@ -16,10 +16,13 @@ namespace FrequencyAnalysis
 
             Bitmap originalBitmap = new Bitmap(imagePath);
 
-            //if (File.Exists(storage))
-            //{
-            //    File.Delete(storage);
-            //}
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+             {
+                 if (File.Exists(storage))
+                 {
+                     File.Delete(storage);
+                 }
+             });
 
             return Task.Run(() =>
             {

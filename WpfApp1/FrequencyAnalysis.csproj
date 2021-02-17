@@ -117,6 +117,7 @@
     <Compile Include="ViewModels\MainViewModel.SaveResults.cs" />
     <Compile Include="ViewModels\MainViewModel.Statictica.cs" />
     <Compile Include="ViewModels\MainViewModel.Video.cs" />
+    <Compile Include="ViewModels\MainViewModel.Calculate.cs" />
     <Compile Include="ViewModels\MainViewModel.Visualization.cs" />
     <Page Include="ChartView.xaml">
       <Generator>MSBuild:Compile</Generator>

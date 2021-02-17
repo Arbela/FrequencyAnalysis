@@ -85,17 +85,13 @@ namespace FrequencyAnalysis
 
             string bitmapPath = CreateLocalFile($"{Constants.BmpImageName}{Constants.BmpExt}");
 
-            int[][] matrix = new int[0][];
+            var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
+            var gradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
+            var linearMatrix = this.linearContraster.BuildLinearContrastMatrix(gradientMatrix);
 
-            await Task.Run(async () =>
-            {
-                await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
+            await ExportMatrix(directoryDialog.FileName, linearMatrix);
 
-                var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
-                matrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
-            });
-
-            ExportMatrixParameters(directoryDialog.FileName, matrix);
+            ExportMatrixParameters(directoryDialog.FileName, linearMatrix);
         }
 
         private async Task SaveImageFile(bool verticalOnly, bool horizontalOnly)

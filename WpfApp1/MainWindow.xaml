@@ -90,6 +90,16 @@
                     </Menu>
 
                 </Button>
+                <Button Height="Auto"
+                        Width="Auto"
+                        Margin="10">
+                    <Menu>
+                        <MenuItem Header="Calculate" Style="{StaticResource MainMenuItemStyle}">
+                            <MenuItem Header="Spectral Density" Command="{Binding CalculateSpectralDensityCommand}"/>
+                        </MenuItem>
+                    </Menu>
+
+                </Button>
                 <Button Height="Auto" 
                         Width="Auto" 
                         Margin="10">
