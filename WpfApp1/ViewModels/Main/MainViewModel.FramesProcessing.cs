@@ -1,4 +1,5 @@
-﻿using FrequencyAnalysis.Helpers;
+﻿using CsvHelper;
+using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.Command;
 using Ookii.Dialogs.Wpf;
 using OxyPlot;
@@ -62,11 +63,12 @@ namespace FrequencyAnalysis
                 var sequence = await videoAnalyzer.Analyze(convertedImagesPath, verticalOnly, horizontalOnly);
 
                 await Task.Yield();
-                ExportBlurSequence(sequence, convertedImagesPath);
+                ExportToTxt(sequence.OrderBy(x => x.X), convertedImagesPath);
+                ExportToCsv(sequence.OrderBy(x => x.X), convertedImagesPath);
             }
         }
 
-        private void ExportBlurSequence(IEnumerable<DataPoint> measuresBlurValuesPoints, string path)
+        private void ExportToTxt(IEnumerable<DataPoint> measuresBlurValuesPoints, string path)
         {
             string fileName = $"{path}\\Sequence{Constants.TxtExt}";
 
@@ -80,6 +82,13 @@ namespace FrequencyAnalysis
                     }
                 }
             }
+        }
+
+        private void ExportToCsv(IEnumerable<DataPoint> measuresBlurValuesPoints, string path)
+        {
+            string fileName = $"{path}\\Sequence{Constants.CsvExt}";
+            CSVWriter csvWriter = new CSVWriter(fileName);
+            csvWriter.WriteRecords(measuresBlurValuesPoints.Select(s => s.Y));
         }
     }
 }

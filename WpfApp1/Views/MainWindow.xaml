@@ -145,16 +145,14 @@
                     <Menu>
                         <MenuItem Header="Frames Processing" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Blur General">
-                                <MenuItem Header="Save Sequence" Command="{Binding SaveBlurGeneralSequenceCommand}"/>
+                                <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurGeneralSequenceCommand}"/>
                             </MenuItem>
                             <MenuItem Header="Blur Vertical">
-                                <MenuItem Header="Save Sequence" Command="{Binding SaveBlurVerticalSequenceCommand}"/>
+                                <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurVerticalSequenceCommand}"/>
                             </MenuItem>
                             <MenuItem Header="Blur Horizontal"   Command="{Binding SaveBlurHorizontalSequenceCommand}">
-                                <MenuItem Header="Save Sequence"/>
+                                <MenuItem Header="Save Sequence Images"/>
                             </MenuItem>
-                            <!--<MenuItem Header="Binary"/>
-                            <MenuItem Header="Frame Parameters"/>-->
                         </MenuItem>
                     </Menu>
                 </Button>
@@ -163,10 +161,6 @@
                         Margin="10">
                     <Menu>
                         <MenuItem Header="Statistica" Style="{StaticResource MainMenuItemStyle}">
-                            <!--<MenuItem Header="Pattern"/>
-                            <MenuItem Header="Spectral Density">
-                                <MenuItem Header="Vibration Frequency"/>
-                            </MenuItem>-->
                             <MenuItem Header="Regression">
                                 <MenuItem Header="Vibration Frequency" Command="{Binding ShowVibrationFrequencyCommand}"/>
                             </MenuItem>

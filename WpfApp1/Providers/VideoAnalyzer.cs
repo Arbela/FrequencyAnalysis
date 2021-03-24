@@ -20,7 +20,7 @@ namespace FrequencyAnalysis
         private string framesPath;
         private string outputPath;
 
-        private SemaphoreSlim semaphore = new SemaphoreSlim(5, 10);
+        private SemaphoreSlim semaphore = new SemaphoreSlim(1, 5);
 
         public VideoAnalyzer(
             ImageRetriever imageRetriever,

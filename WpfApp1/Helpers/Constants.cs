@@ -17,6 +17,7 @@ namespace FrequencyAnalysis.Helpers
         public const string JpegExt = ".jpeg";
         public const string PngExt = ".png";
         public const string TxtExt = ".txt";
+        public const string CsvExt = ".csv";
         public const string DatExt = "_dat";
     }
 }

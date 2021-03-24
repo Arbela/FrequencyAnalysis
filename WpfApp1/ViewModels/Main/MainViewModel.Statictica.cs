@@ -1,14 +1,11 @@
 ﻿using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
-using Ookii.Dialogs.Wpf;
 using OxyPlot;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Windows.Documents.DocumentStructures;
-using System.Windows.Forms;
 using System.Windows.Input;
 
 namespace FrequencyAnalysis
