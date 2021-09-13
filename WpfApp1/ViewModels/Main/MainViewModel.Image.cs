@@ -88,12 +88,18 @@ namespace FrequencyAnalysis
 
         private async void ConvertToGrayscaleCommandExecuted()
         {
-            await Task.Run( async () =>
+            var directoryDialog = ShowSaveFileDialog(Constants.BmpFilter, Constants.BmpExtPattern);            
+
+            if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
+
+            string bitmapPath = directoryDialog.FileName;
+            if (File.Exists(bitmapPath))
             {
-                string bitmapPath = CreateLocalFile($"{Constants.BmpImageName}{Constants.BmpExt}");
-
-                await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
-
+                File.Delete(bitmapPath);
+            }
+            await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
+            await Task.Run(() =>
+            {
                 this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
                 this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
                 this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);

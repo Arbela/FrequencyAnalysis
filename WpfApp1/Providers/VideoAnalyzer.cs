@@ -110,8 +110,8 @@ namespace FrequencyAnalysis
             await Task.Run(() =>
             {
                 Bitmap originalBitmap = new Bitmap(imagePath);
-                Bitmap bitmap = imageProvider.ToGrayscale(originalBitmap);
-                bitmap.Save(storage);
+                Bitmap bitmap = imageProvider.ToGrayscale(originalBitmap, storage);
+                //bitmap.Save(storage);
             });
 
             semaphore.Release();

@@ -1,6 +1,5 @@
 ﻿using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.CommandWpf;
-using System;
 using System.Threading.Tasks;
 
 namespace FrequencyAnalysis

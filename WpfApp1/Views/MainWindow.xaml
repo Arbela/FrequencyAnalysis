@@ -7,6 +7,7 @@
         xmlns:local="clr-namespace:FrequencyAnalysis"
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
+        WindowState="Maximized"
         Title=""
         Height="850" Width="1300"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
@@ -14,7 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="10"/>
-            <RowDefinition/>
+            <RowDefinition />
         </Grid.RowDefinitions>
 
         <Border Margin="0 0 0 10"
@@ -32,9 +33,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Image Processing" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Blur General">
@@ -51,9 +50,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Vizualization" Style="{StaticResource MainMenuItemStyle}">
                             <!--<MenuItem Header="Test Image"/>-->
@@ -69,9 +66,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="Auto"
-                        Width="Auto"
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Save Results" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Image Files">
@@ -90,9 +85,7 @@
                     </Menu>
 
                 </Button>
-                <Button Height="Auto"
-                        Width="Auto"
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Calculate" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Spectral Density" Command="{Binding CalculateSpectralDensityCommand}"/>
@@ -100,9 +93,7 @@
                     </Menu>
 
                 </Button>
-                <Button Height="Auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Video" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Open"  Command="{Binding OpenVideoCommand}"/>
@@ -116,9 +107,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="File Processing" Style="{StaticResource MainMenuItemStyle}">
                             <!--<MenuItem Header="Choose a Part">
@@ -139,9 +128,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Frames Processing" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Blur General">
@@ -156,9 +143,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="auto" 
-                        Width="Auto" 
-                        Margin="10">
+                <Button Margin="10">
                     <Menu>
                         <MenuItem Header="Statistica" Style="{StaticResource MainMenuItemStyle}">
                             <MenuItem Header="Regression">
@@ -167,9 +152,7 @@
                         </MenuItem>
                     </Menu>
                 </Button>
-                <Button Height="Auto" 
-                        Width="Auto" 
-                        Margin="10"
+                <Button Margin="10"
                         ToolTip="Measure Blur">
                     Help
                 </Button>
@@ -189,12 +172,17 @@
         <Border BorderThickness="1"
                 Margin="10" 
                 Grid.Row="2"
+                Width="Auto"
+                Height="Auto"
+                Visibility="{Binding IsVideoUploaded, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
                 BorderBrush="{StaticResource AccentBlue}">
-            <Image x:Name="selectedImage" Margin="5" Source="{Binding SelectedImagePath, Mode=TwoWay}"/>
+            <Image x:Name="selectedImage" Source="{Binding SelectedImagePath, Mode=TwoWay}"/>
         </Border>
 
         <Border BorderThickness="1"
                 Grid.Row="2"
+                Height="Auto"
+                Width="Auto"
                 Margin="10"
                 BorderBrush="{StaticResource AccentBlue}"
                 Visibility="{Binding IsVideoUploaded, Converter={StaticResource BoolToVisibilityConverter}}">
