@@ -5,6 +5,7 @@ using Microsoft.Win32;
 using OxyPlot;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -169,9 +170,14 @@ namespace FrequencyAnalysis
             }
         }
 
-        private string CreateLocalFile(string fileName)
+        private string CreateLocalFile()
         {
-            return $"{Environment.CurrentDirectory}\\{fileName}";
+            var path = Path.Combine(Environment.CurrentDirectory, "LocalImageStorage");
+            if (!Directory.Exists(path))
+            {
+                Directory.CreateDirectory(path);
+            }
+            return $"{path}\\{123}";
         }
 
         private string ParseExtension(string value)

@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.779
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FrequencyAnalysis", "WpfApp1\FrequencyAnalysis.csproj", "{E8DD3CBA-B1F0-448F-B8D6-61669F77F6D2}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FrequencyAnalysisSetup", "FrequencyAnalysisSetup\FrequencyAnalysisSetup.vdproj", "{79FFE9F3-E7E8-4860-B258-6682A915D7BB}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FrequencyAnalysisSetup", "FrequencyAnalysisSetup\FrequencyAnalysisSetup.vdproj", "{B3E2FEB5-8697-483C-B516-CC0FEFF59DCF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{E8DD3CBA-B1F0-448F-B8D6-61669F77F6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8DD3CBA-B1F0-448F-B8D6-61669F77F6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8DD3CBA-B1F0-448F-B8D6-61669F77F6D2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{79FFE9F3-E7E8-4860-B258-6682A915D7BB}.Debug|Any CPU.ActiveCfg = Debug
-		{79FFE9F3-E7E8-4860-B258-6682A915D7BB}.Release|Any CPU.ActiveCfg = Release
+		{B3E2FEB5-8697-483C-B516-CC0FEFF59DCF}.Debug|Any CPU.ActiveCfg = Debug
+		{B3E2FEB5-8697-483C-B516-CC0FEFF59DCF}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -107,12 +107,12 @@ namespace FrequencyAnalysis
         private async Task SaveFrame(string imagePath, string storage)
         {
             await semaphore.WaitAsync();
-            await Task.Run(() =>
+            Bitmap originalBitmap = new Bitmap(imagePath);
+            Bitmap bitmap = await Task.Run(() =>
             {
-                Bitmap originalBitmap = new Bitmap(imagePath);
-                Bitmap bitmap = imageProvider.ToGrayscale(originalBitmap, storage);
-                //bitmap.Save(storage);
+                 return imageProvider.ToGrayscale(originalBitmap, storage);
             });
+            //bitmap.Save(storage);
 
             semaphore.Release();
         }

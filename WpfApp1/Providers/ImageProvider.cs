@@ -10,28 +10,23 @@ namespace FrequencyAnalysis
     {
         public ImageProvider() { }
 
-        public Task CreateGrayscale8Async(string imagePath, string storage)
+        public async Task<Bitmap> CreateGrayscale8Async(string imagePath, string storage)
         {
-            if (string.IsNullOrWhiteSpace(imagePath) || string.IsNullOrWhiteSpace(storage)) return Task.CompletedTask;
+            if (string.IsNullOrWhiteSpace(imagePath) || string.IsNullOrWhiteSpace(storage)) return null;
 
             Bitmap originalBitmap = new Bitmap(imagePath);
 
-            return Task.Run(() =>
-            {
-                Bitmap bitmap = ToGrayscale(originalBitmap, storage);
-
-            });
+            return await Task.Run(() => ToGrayscale(originalBitmap, storage));
         }
 
         public unsafe Bitmap ToGrayscale(Bitmap colorBitmap, string storage)
         {
             int Width = colorBitmap.Width;
             int Height = colorBitmap.Height;
-
-            using (Bitmap grayscaleBitmap = new Bitmap(Width, Height, PixelFormat.Format8bppIndexed))
+            Bitmap grayscaleBitmap;
+            using (grayscaleBitmap = new Bitmap(Width, Height, PixelFormat.Format8bppIndexed))
             {
-                grayscaleBitmap.SetResolution(colorBitmap.HorizontalResolution,
-                                              colorBitmap.VerticalResolution);
+                grayscaleBitmap.SetResolution(colorBitmap.HorizontalResolution, colorBitmap.VerticalResolution);
 
                 // Set grayscale palette
                 ColorPalette colorPalette = grayscaleBitmap.Palette;
@@ -42,8 +37,7 @@ namespace FrequencyAnalysis
                 grayscaleBitmap.Palette = colorPalette;
 
                 // Set grayscale palette            
-                BitmapData bitmapData = grayscaleBitmap.LockBits(
-                    new Rectangle(Point.Empty, grayscaleBitmap.Size),
+                BitmapData bitmapData = grayscaleBitmap.LockBits(new Rectangle(Point.Empty, grayscaleBitmap.Size),
                     ImageLockMode.WriteOnly, PixelFormat.Format8bppIndexed);
 
                 unsafe
@@ -64,13 +58,11 @@ namespace FrequencyAnalysis
                         pPixel += bitmapData.Stride;
                     }
                 }
-
                 grayscaleBitmap.UnlockBits(bitmapData);
-                grayscaleBitmap.Save(storage);
 
-                return grayscaleBitmap;
+                grayscaleBitmap.Save(storage, ImageFormat.Bmp);
             }
-
+            return grayscaleBitmap;
         }
 
         public int[][] GetBitmapPixelsMatrix(string bitmapPath)

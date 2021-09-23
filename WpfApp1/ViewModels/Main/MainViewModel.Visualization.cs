@@ -29,7 +29,7 @@ namespace FrequencyAnalysis
 
         private async void GradientImageHorizontalExecuted()
         {
-            string bitmapPath = CreateLocalFile($"{Constants.ImportedBmpImageName}{Constants.BmpExt}");
+            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
             int[][] horizontalGradientMatrix = new int[0][];
 
@@ -46,7 +46,7 @@ namespace FrequencyAnalysis
 
         private async void GradientImageVerticalExecuted()
         {
-            string bitmapPath = CreateLocalFile($"{Constants.ImportedBmpImageName}{Constants.BmpExt}");
+            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
             int[][] verticalGradientMatrix = new int[0][];
 
@@ -63,7 +63,7 @@ namespace FrequencyAnalysis
 
         private async void GradientImageMagnitudeExecuted()
         {
-            string bitmapPath = CreateLocalFile($"{Constants.ImportedBmpImageName}{Constants.BmpExt}");
+            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
             int[][] gradientMatrix = new int[0][];
 

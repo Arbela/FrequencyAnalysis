@@ -1,11 +1,7 @@
-﻿using System.Security.Authentication;
-
-namespace FrequencyAnalysis.Helpers
+﻿namespace FrequencyAnalysis.Helpers
 {
     public class Constants
     {
-        public const string BmpImageName = "BitmapImage";
-        public const string ImportedBmpImageName = "ImportedBitmapImage";
         public const string ImageFilter = "JPG Files (*.jpg)|*.jpg|JPEG Files (*.jpeg)|*.jpeg|BMP Files (*.bmp)|*.bmp|PNG Files (*.png)|*.png";
         public const string BmpFilter = "BMP Files (*.bmp)|*.bmp";
         public const string BmpExtPattern = "*.bmp";

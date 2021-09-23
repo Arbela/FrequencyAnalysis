@@ -1,6 +1,5 @@
 ﻿using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.CommandWpf;
-using System.Threading.Tasks;
 
 namespace FrequencyAnalysis
 {
@@ -22,18 +21,15 @@ namespace FrequencyAnalysis
         {
             if (blockSize == 3)
             {
-                string bitmapPath = CreateLocalFile($"{Constants.ImportedBmpImageName}{Constants.BmpExt}");
+                string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
-                await Task.Run(async () =>
-                {
-                    await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
+                await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
 
-                    this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
-                    this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
-                    this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
-                });
+                this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
+                this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
+                this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
 
-                this.imageProvider.CreateBitmapFromPixelMartix(this.LinearContrastMatrix).Save(bitmapPath);
+                this.imageProvider.CreateBitmapFromPixelMartix(this.LinearContrastMatrix);
                 this.SelectedImagePath = bitmapPath;
             }
         }

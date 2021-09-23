@@ -83,7 +83,7 @@ namespace FrequencyAnalysis
 
             if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
 
-            string bitmapPath = CreateLocalFile($"{Constants.BmpImageName}{Constants.BmpExt}");
+            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
             var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
             var gradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
@@ -100,7 +100,7 @@ namespace FrequencyAnalysis
 
             if (string.IsNullOrEmpty(saveDialog.FileName)) return;
 
-            string bitmapPath = CreateLocalFile($"{Constants.BmpImageName}{Constants.BmpExt}");
+            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
             int[][] gradientMatrix = new int[0][];
 

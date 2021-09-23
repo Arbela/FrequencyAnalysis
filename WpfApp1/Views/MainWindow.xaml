@@ -179,21 +179,20 @@
             <Image x:Name="selectedImage" Source="{Binding SelectedImagePath, Mode=TwoWay}"/>
         </Border>
 
-        <Border BorderThickness="1"
-                Grid.Row="2"
+        <Border Grid.Row="2"
                 Height="Auto"
                 Width="Auto"
                 Margin="10"
-                BorderBrush="{StaticResource AccentBlue}"
                 Visibility="{Binding IsVideoUploaded, Converter={StaticResource BoolToVisibilityConverter}}">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="100"/>
                 </Grid.RowDefinitions>
-                <Border BorderBrush="{StaticResource AccentBlue}">
+                <Border BorderBrush="{StaticResource AccentBlue}"
+                        BorderThickness="1">
                     <MediaElement x:Name="mePlayer" 
-                                  Position="00:00:00"
+                                  Position="00:00:01"
                                   Source="{Binding Mp4Path, UpdateSourceTrigger=PropertyChanged}" 
                                   LoadedBehavior="Manual"
                                   UnloadedBehavior="Manual"

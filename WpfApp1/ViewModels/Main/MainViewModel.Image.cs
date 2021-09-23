@@ -93,10 +93,6 @@ namespace FrequencyAnalysis
             if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
 
             string bitmapPath = directoryDialog.FileName;
-            if (File.Exists(bitmapPath))
-            {
-                File.Delete(bitmapPath);
-            }
             await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
             await Task.Run(() =>
             {
@@ -104,8 +100,8 @@ namespace FrequencyAnalysis
                 this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
                 this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
 
-                this.SelectedImagePath = bitmapPath;
             });
+            this.SelectedImagePath = bitmapPath;
         }
 
         private void ImageOpenCommandExecuted()
