@@ -11,155 +11,129 @@
         Title=""
         Height="850" Width="1300"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="10"/>
-            <RowDefinition />
-        </Grid.RowDefinitions>
+    <Grid>       
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="10"/>
+                <RowDefinition />
+            </Grid.RowDefinitions>
 
-        <Border Margin="0 0 0 10"
+            <Border Margin="0 0 0 10"
                 Background="#00403855">
-            <StackPanel x:Name="ToolBar" Orientation="Horizontal" VerticalAlignment="Center">
-                <Button Height="Auto" Width="Auto" Margin="10">
-                    <Menu>
-                        <MenuItem Header="Image" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
-                            <MenuItem Header="Close" Command="{Binding CloseCommand}"/>
-                            <MenuItem Header="Convert (8 bit .bmp)" Command="{Binding ConvertToGrayscaleCommand}"/>
-                            <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
-                            <MenuItem Header="Save as" Command="{Binding SaveAsCommand}"/>
-                            <MenuItem Header="Save .txt File" Command="{Binding SaveAsTxtCommand}"/>
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Image Processing" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Blur General">
-                                <MenuItem Header="Block Size">
-                                    <MenuItem Header="3x3" Command="{Binding BlurGeneralCommand}" CommandParameter="3"/>
+                <StackPanel x:Name="ToolBar" Orientation="Horizontal" VerticalAlignment="Center">
+                    <Button Height="Auto" Width="Auto" Margin="10">
+                        <Menu>
+                            <MenuItem Header="Image" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Open" Command="{Binding OpenCommand}"/>
+                                <MenuItem Header="Close" Command="{Binding CloseCommand}"/>
+                                <MenuItem Header="Save" Command="{Binding SaveCommand}"/>
+                                <MenuItem Header="Save as" Command="{Binding SaveAsCommand}"/>
+                                <MenuItem Header="Save .txt File" Command="{Binding SaveAsTxtCommand}"/>
+                            </MenuItem>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Image Processing" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Convert (8 bit .bmp)" Command="{Binding ConvertToGrayscaleCommand}"/>
+                                <MenuItem Header="Blur General">
+                                    <MenuItem Header="Block Size">
+                                        <MenuItem Header="3x3" Command="{Binding BlurGeneralCommand}" CommandParameter="3"/>
+                                    </MenuItem>
                                 </MenuItem>
                             </MenuItem>
-                            <!--<MenuItem Header="Blur Vertical"/>
-                            <MenuItem Header="Blur Horizontal"/>
-                            <MenuItem Header="Blur map General"/>
-                            <MenuItem Header="Blur map Vertical"/>
-                            <MenuItem Header="Blur map Horizontal"/>
-                            <MenuItem Header="Binarization"/>-->
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Vizualization" Style="{StaticResource MainMenuItemStyle}">
-                            <!--<MenuItem Header="Test Image"/>-->
-                            <MenuItem Header="Gradient Image">
-                                <MenuItem Header="Magnitude"  Command="{Binding GradientImageMagnitude}"/>
-                                <MenuItem Header="Vertical"   Command="{Binding GradientImageVertical}"/>
-                                <MenuItem Header="Horizontal" Command="{Binding GradientImageHorizontal}"/>
-                            </MenuItem>
-                            <!--<MenuItem Header="Blur map General"/>
-                            <MenuItem Header="Blur map Vertical"/>
-                            <MenuItem Header="Blur map Horizontal"/>
-                            <MenuItem Header="Binarization"/>-->
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Save Results" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Image Files">
-                                <MenuItem Header="Magnitude"  Command="{Binding ImageFileMagnitude}"/>
-                                <MenuItem Header="Vertical"   Command="{Binding ImageFileVertical}"/>
-                                <MenuItem Header="Horizontal" Command="{Binding ImageFileHorizontal}"/>
-                            </MenuItem>
-                            <MenuItem Header="Text Files">
-                                <MenuItem Header="Magnitude"  Command="{Binding TextFileMagnitude}"/>
-                                <MenuItem Header="Vertical"   Command="{Binding TextFileVertical}"/>
-                                <MenuItem Header="Horizontal" Command="{Binding TextFileHorizontal}"/>
-                            </MenuItem>
-                            <!--<MenuItem Header="Parameters"/>
-                            <MenuItem Header="Histogram"/>-->
-                        </MenuItem>
-                    </Menu>
-
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Calculate" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Spectral Density" Command="{Binding CalculateSpectralDensityCommand}"/>
-                        </MenuItem>
-                    </Menu>
-
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Video" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Open"  Command="{Binding OpenVideoCommand}"/>
-                            <MenuItem Header="Close" Command="{Binding CloseVideoCommand}"/>
-                            <MenuItem Header="Play"  Command="{Binding PlayVideoCommand}" CommandParameter="{Binding ElementName=mePlayer}"/>
-                            <MenuItem Header="Stop"  Command="{Binding StopVideoCommand}" CommandParameter="{Binding ElementName=mePlayer}"/>
-                            <!--<MenuItem Header="Convert .avi"/>
-                            <MenuItem Header="Convert (?)"/>
-                            <MenuItem Header="Save"/>
-                            <MenuItem Header="Save as"/>-->
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="File Processing" Style="{StaticResource MainMenuItemStyle}">
-                            <!--<MenuItem Header="Choose a Part">
-                                <MenuItem Header="Size">
-                                    <MenuItem Header="Sec"/>
-                                    <MenuItem Header="Frames"/>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Vizualization" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Gradient Image">
+                                    <MenuItem Header="Magnitude"  Command="{Binding GradientImageMagnitude}"/>
+                                    <MenuItem Header="Vertical"   Command="{Binding GradientImageVertical}"/>
+                                    <MenuItem Header="Horizontal" Command="{Binding GradientImageHorizontal}"/>
                                 </MenuItem>
                             </MenuItem>
-                            <MenuItem Header="Save Part"/>
-                            <MenuItem Header="Split"/>
-                            <MenuItem Header="Merge"/>-->
-                            <MenuItem Header="Frames per Second" >
-                                <MenuItem Header="1"  Command="{Binding SaveFramesCommand}" CommandParameter="1"/>
-                                <MenuItem Header="3"  Command="{Binding SaveFramesCommand}" CommandParameter="3"/>
-                                <MenuItem Header="15" Command="{Binding SaveFramesCommand}" CommandParameter="15"/>
-                                <MenuItem Header="30" Command="{Binding SaveFramesCommand}" CommandParameter="30"/>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Save Results" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Image Files">
+                                    <MenuItem Header="Magnitude"  Command="{Binding ImageFileMagnitude}"/>
+                                    <MenuItem Header="Vertical"   Command="{Binding ImageFileVertical}"/>
+                                    <MenuItem Header="Horizontal" Command="{Binding ImageFileHorizontal}"/>
+                                </MenuItem>
+                                <MenuItem Header="Text Files">
+                                    <MenuItem Header="Magnitude"  Command="{Binding TextFileMagnitude}"/>
+                                    <MenuItem Header="Vertical"   Command="{Binding TextFileVertical}"/>
+                                    <MenuItem Header="Horizontal" Command="{Binding TextFileHorizontal}"/>
+                                </MenuItem>
                             </MenuItem>
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Frames Processing" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Blur General">
-                                <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurGeneralSequenceCommand}"/>
+                        </Menu>
+
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Calculate" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Spectral Density" Command="{Binding CalculateSpectralDensityCommand}"/>
                             </MenuItem>
-                            <MenuItem Header="Blur Vertical">
-                                <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurVerticalSequenceCommand}"/>
+                        </Menu>
+
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Video" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Open"  Command="{Binding OpenVideoCommand}"/>
+                                <MenuItem Header="Close" Command="{Binding CloseVideoCommand}"/>
+                                <MenuItem Header="Play"  Command="{Binding PlayVideoCommand}" CommandParameter="{Binding ElementName=mePlayer}"/>
                             </MenuItem>
-                            <MenuItem Header="Blur Horizontal"   Command="{Binding SaveBlurHorizontalSequenceCommand}">
-                                <MenuItem Header="Save Sequence Images"/>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="File Processing" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Frames per Second" >
+                                    <MenuItem Header="1"  Command="{Binding SaveFramesCommand}" CommandParameter="1"/>
+                                    <MenuItem Header="3"  Command="{Binding SaveFramesCommand}" CommandParameter="3"/>
+                                    <MenuItem Header="15" Command="{Binding SaveFramesCommand}" CommandParameter="15"/>
+                                    <MenuItem Header="30" Command="{Binding SaveFramesCommand}" CommandParameter="30"/>
+                                </MenuItem>
                             </MenuItem>
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10">
-                    <Menu>
-                        <MenuItem Header="Statistica" Style="{StaticResource MainMenuItemStyle}">
-                            <MenuItem Header="Regression">
-                                <MenuItem Header="Vibration Frequency" Command="{Binding ShowVibrationFrequencyCommand}"/>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Frames Processing" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Blur General">
+                                    <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurGeneralSequenceCommand}"/>
+                                </MenuItem>
+                                <MenuItem Header="Blur Vertical">
+                                    <MenuItem Header="Save Sequence Images" Command="{Binding SaveBlurVerticalSequenceCommand}"/>
+                                </MenuItem>
+                                <MenuItem Header="Blur Horizontal"   Command="{Binding SaveBlurHorizontalSequenceCommand}">
+                                    <MenuItem Header="Save Sequence Images"/>
+                                </MenuItem>
                             </MenuItem>
-                        </MenuItem>
-                    </Menu>
-                </Button>
-                <Button Margin="10"
+                        </Menu>
+                    </Button>
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Statistica" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Regression">
+                                    <MenuItem Header="Vibration Frequency" Command="{Binding ShowVibrationFrequencyCommand}"/>
+                                </MenuItem>
+                            </MenuItem>
+                        </Menu>
+                    </Button>
+                    <Button Margin="10"
                         ToolTip="Measure Blur">
-                    Help
-                </Button>
-            </StackPanel>
+                        Help
+                    </Button>
+                </StackPanel>
 
-        </Border>
-        <Line Stroke="Black"
+            </Border>
+            <Line Stroke="Black"
               Grid.Row="1"
               Height="Auto"
               Margin="0 10 0 10"
@@ -168,48 +142,55 @@
               X2="{Binding Path=ActualWidth, RelativeSource={RelativeSource AncestorType=Grid}}"
               Y1="0"
               Y2="0"/>
-        
-        <Border BorderThickness="1"
+
+            <Border BorderThickness="1"
                 Margin="10" 
                 Grid.Row="2"
                 Width="Auto"
                 Height="Auto"
                 Visibility="{Binding IsVideoUploaded, Converter={StaticResource InvertedBoolToVisibilityConverter}}"
                 BorderBrush="{StaticResource AccentBlue}">
-            <Image x:Name="selectedImage" Source="{Binding SelectedImagePath, Mode=TwoWay}"/>
-        </Border>
+                <Image x:Name="selectedImage" Source="{Binding SelectedImagePath, Mode=TwoWay}"/>
+            </Border>
 
-        <Border Grid.Row="2"
+            <Border Grid.Row="2"
                 Height="Auto"
                 Width="Auto"
                 Margin="10"
                 Visibility="{Binding IsVideoUploaded, Converter={StaticResource BoolToVisibilityConverter}}">
-            <Grid>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="100"/>
-                </Grid.RowDefinitions>
-                <Border BorderBrush="{StaticResource AccentBlue}"
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="100"/>
+                    </Grid.RowDefinitions>
+                    <Border BorderBrush="{StaticResource AccentBlue}"
                         BorderThickness="1">
-                    <MediaElement x:Name="mePlayer" 
+                        <MediaElement x:Name="mePlayer" 
                                   Position="00:00:01"
                                   Source="{Binding Mp4Path, UpdateSourceTrigger=PropertyChanged}" 
                                   LoadedBehavior="Manual"
                                   UnloadedBehavior="Manual"
                                   Grid.IsSharedSizeScope="True"/>
-                </Border>
-                <StackPanel Grid.Row="1">
-                    <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
-                    <WrapPanel HorizontalAlignment="Center">
-                        <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>
-                        <Button Name="btnPause" Margin="5 0 5 0" Click="btnPause_Click">Pause</Button>
-                        <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
-                        <Button x:Name="btnMute" Click="btnMute_Click" Margin="5 0 0 0"> Mute </Button>
-                    </WrapPanel>
-                </StackPanel>
-            </Grid>
-        </Border>        
+                    </Border>
+                    <StackPanel Grid.Row="1">
+                        <Label Name="lblStatus" Content="Not playing..." HorizontalContentAlignment="Center" Margin="5" />
+                        <WrapPanel HorizontalAlignment="Center">
+                            <Button Name="btnPlay" Click="btnPlay_Click">Play</Button>
+                            <Button Name="btnPause" Margin="5 0 5 0" Click="btnPause_Click">Pause</Button>
+                            <Button Name="btnStop" Click="btnStop_Click">Stop</Button>
+                            <Button x:Name="btnMute" Click="btnMute_Click" Margin="5 0 0 0">Mute</Button>
+                        </WrapPanel>
+                    </StackPanel>
+                </Grid>
+            </Border>
 
+        </Grid>
+        <Border Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+            <ProgressBar IsIndeterminate="True"
+                         Height="15" Width="250"
+                         Foreground="{StaticResource AccentBlue}"
+                         VerticalAlignment="Center"
+                         HorizontalAlignment="Center"/>
+        </Border>
     </Grid>
-
 </Window>

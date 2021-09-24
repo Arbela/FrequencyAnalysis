@@ -83,9 +83,7 @@ namespace FrequencyAnalysis
 
             if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
 
-            string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
-
-            var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
+            var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(this.SelectedImagePath);
             var gradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
             var linearMatrix = this.linearContraster.BuildLinearContrastMatrix(gradientMatrix);
 
@@ -102,17 +100,23 @@ namespace FrequencyAnalysis
 
             string bitmapPath = $"{CreateLocalFile()}{Constants.BmpExt}";
 
-            int[][] gradientMatrix = new int[0][];
+            int[][] linearMatrix = new int[0][];
 
             await Task.Run(async () =>
             {
                 await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
 
                 var pixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
-                gradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
+                var gradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(pixelsMatrix, verticalOnly, horizontalOnly);
+                linearMatrix = this.linearContraster.BuildLinearContrastMatrix(gradientMatrix);
             });
 
-            this.imageProvider.CreateBitmapFromPixelMartix(gradientMatrix).Save(saveDialog.FileName);
+            if (File.Exists(bitmapPath))
+            {
+                File.Delete(bitmapPath);
+            }
+
+            this.imageProvider.CreateBitmapFromPixelMartix(linearMatrix).Save(saveDialog.FileName);
         }
     }
 }

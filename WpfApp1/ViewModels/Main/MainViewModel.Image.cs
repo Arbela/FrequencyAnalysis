@@ -14,7 +14,6 @@ namespace FrequencyAnalysis
     {
         private ICommand openCommand;
         private ICommand closeCommand;
-        private ICommand convertToGrayscaleCommand;
         private ICommand saveCommand;
         private ICommand saveAsCommand;
         private ICommand saveAsTxtCommand;
@@ -27,11 +26,6 @@ namespace FrequencyAnalysis
         public ICommand CloseCommand
         {
             get => this.closeCommand ?? (this.closeCommand = new RelayCommand(ImageCloseCommandExecuted, CanExecuteSelectedImagePathRelatedCommand));
-        }
-
-        public ICommand ConvertToGrayscaleCommand
-        {
-            get => this.convertToGrayscaleCommand ?? (this.convertToGrayscaleCommand = new RelayCommand(ConvertToGrayscaleCommandExecuted, CanExecuteSelectedImagePathRelatedCommand));
         }
 
         public ICommand SaveCommand
@@ -84,24 +78,6 @@ namespace FrequencyAnalysis
             {
                 Image.FromFile(this.SelectedImagePath).Save(saveDialog.FileName);
             }
-        }
-
-        private async void ConvertToGrayscaleCommandExecuted()
-        {
-            var directoryDialog = ShowSaveFileDialog(Constants.BmpFilter, Constants.BmpExtPattern);            
-
-            if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
-
-            string bitmapPath = directoryDialog.FileName;
-            await this.imageProvider.CreateGrayscale8Async(this.SelectedImagePath, bitmapPath);
-            await Task.Run(() =>
-            {
-                this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(bitmapPath);
-                this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
-                this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
-
-            });
-            this.SelectedImagePath = bitmapPath;
         }
 
         private void ImageOpenCommandExecuted()

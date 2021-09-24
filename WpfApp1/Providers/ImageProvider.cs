@@ -82,6 +82,8 @@ namespace FrequencyAnalysis
                 }
             }
 
+            bitmap.Dispose();
+
             return pixelsMatrix;
         }
 

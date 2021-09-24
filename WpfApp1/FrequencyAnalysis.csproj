@@ -127,9 +127,6 @@
     <Compile Include="Providers\ImageProvider.cs" />
     <Compile Include="Providers\ImageRetriever.cs" />
     <Compile Include="Providers\LinearContraster.cs" />
-    <Compile Include="Views\MainView.xaml.cs">
-      <DependentUpon>MainView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Providers\MatrixHelper.cs" />
     <Compile Include="Views\MatrixView.xaml.cs">
       <DependentUpon>MatrixView.xaml</DependentUpon>
@@ -147,10 +144,6 @@
     <Compile Include="ViewModels\Main\MainViewModel.Calculate.cs" />
     <Compile Include="ViewModels\Main\MainViewModel.Visualization.cs" />
     <Page Include="Views\ChartView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\MainView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

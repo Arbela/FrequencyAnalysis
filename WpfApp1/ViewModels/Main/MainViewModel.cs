@@ -177,7 +177,7 @@ namespace FrequencyAnalysis
             {
                 Directory.CreateDirectory(path);
             }
-            return $"{path}\\{123}";
+            return $"{path}\\{Guid.NewGuid()}";
         }
 
         private string ParseExtension(string value)
