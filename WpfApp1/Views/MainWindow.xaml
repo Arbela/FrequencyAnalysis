@@ -8,7 +8,7 @@
         xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title=""
+        Title="Frequency Analysis"
         Height="850" Width="1300"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
     <Grid>       
@@ -126,10 +126,6 @@
                             </MenuItem>
                         </Menu>
                     </Button>
-                    <Button Margin="10"
-                        ToolTip="Measure Blur">
-                        Help
-                    </Button>
                 </StackPanel>
 
             </Border>
@@ -185,7 +181,9 @@
             </Border>
 
         </Grid>
-        <Border Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}">
+        <Border Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                Height="Auto"
+                Width="Auto">
             <ProgressBar IsIndeterminate="True"
                          Height="15" Width="250"
                          Foreground="{StaticResource AccentBlue}"

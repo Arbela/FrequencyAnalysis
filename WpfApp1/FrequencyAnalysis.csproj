@@ -118,6 +118,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
+    <Compile Include="Models\MatrixVisualizationEventArgs.cs" />
     <Compile Include="Providers\CSVWriter.cs" />
     <Compile Include="Views\ChartView.xaml.cs">
       <DependentUpon>ChartView.xaml</DependentUpon>

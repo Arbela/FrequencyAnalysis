@@ -55,16 +55,25 @@ namespace FrequencyAnalysis
         private async Task SaveBlurSequence(bool verticalOnly, bool horizontalOnly)
         {
             var dlg = new VistaFolderBrowserDialog();
-            if (dlg.ShowDialog() == true && !string.IsNullOrWhiteSpace(dlg.SelectedPath) && Directory.Exists(dlg.SelectedPath))
+            dlg.ShowDialog();
+
+            if (string.IsNullOrWhiteSpace(dlg.SelectedPath)) return;
+
+            try
             {
+                this.IsBusy = true;
+
                 var videoAnalyzer = new VideoAnalyzer(imageRetriever, imageProvider, gradientMatrixBuilder, linearContraster, mp4Path, dlg.SelectedPath, dlg.SelectedPath);
                 string convertedImagesPath = await videoAnalyzer.ConvertToGrayScale();
 
                 var sequence = await videoAnalyzer.Analyze(convertedImagesPath, verticalOnly, horizontalOnly);
 
-                await Task.Yield();
                 ExportToTxt(sequence.OrderBy(x => x.X), convertedImagesPath);
                 ExportToCsv(sequence.OrderBy(x => x.X), convertedImagesPath);
+            }
+            finally
+            {
+                this.IsBusy = false;
             }
         }
 

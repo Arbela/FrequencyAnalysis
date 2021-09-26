@@ -1,5 +1,6 @@
 ﻿using FrequencyAnalysis.Helpers;
 using FrequencyAnalysis.Interfaces;
+using FrequencyAnalysis.Models;
 using GalaSoft.MvvmLight;
 using Microsoft.Win32;
 using OxyPlot;
@@ -30,7 +31,7 @@ namespace FrequencyAnalysis
         private ImageRetriever imageRetriever;
         private IVideoAnalyzer videoAnalyzer;
 
-        public event Action<int[][]> ShowMatrixEvent;
+        public event EventHandler<MatrixVisualizationEventArgs> ShowMatrixEvent;
 
         #endregion
 

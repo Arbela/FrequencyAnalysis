@@ -4,11 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:FrequencyAnalysis"
+        Title="{Binding Title, UpdateSourceTrigger=PropertyChanged}"
         mc:Ignorable="d"
         d:DataContext="{d:DesignInstance Type=local:MatrixViewModel, IsDesignTimeCreatable=False}">
     <Grid>
+        <Border BorderBrush="{StaticResource AccentBlue}"
+                BorderThickness="1">
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Auto">
+                <TextBox IsReadOnly="True"
+                     FontSize="13"
+                     Text="{Binding StringMatrix, UpdateSourceTrigger=PropertyChanged}"/>
+            </ScrollViewer>
+        </Border>
 
-        <ListBox ItemsSource="{Binding MatrixItems}"
+        <!--<ListBox ItemsSource="{Binding MatrixItems}"
                  Background="Transparent"
                  BorderThickness="1"
                  Margin="10">
@@ -42,7 +52,7 @@
                     </ListBox>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
         
     </Grid>
 </Window>

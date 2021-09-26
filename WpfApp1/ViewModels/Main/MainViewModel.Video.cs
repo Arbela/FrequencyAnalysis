@@ -28,7 +28,7 @@ namespace FrequencyAnalysis
 
         public ICommand OpenVideoCommand
         {
-            get => this.openVideoCommand ?? (this.openVideoCommand = new RelayCommand(OpenVideoCommandExecuted, () => this.SelectedImagePath == null));
+            get => this.openVideoCommand ?? (this.openVideoCommand = new RelayCommand(OpenVideoCommandExecuted));
         }
 
         public ICommand CloseVideoCommand

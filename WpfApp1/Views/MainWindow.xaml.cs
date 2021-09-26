@@ -1,4 +1,5 @@
 ﻿using FrequencyAnalysis;
+using FrequencyAnalysis.Models;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -25,9 +26,9 @@ namespace FrequencyAnalysis
             timer.Start();
         }
 
-        private void ShowMatrixEventHandler(int[][] source)
+        private void ShowMatrixEventHandler(object sender, MatrixVisualizationEventArgs args)
         {
-            MatrixViewModel<int> matrixViewModel = new MatrixViewModel<int>(source);
+            MatrixViewModel<int> matrixViewModel = new MatrixViewModel<int>(args.Source, args.Title);
             MatrixView matrixView = new MatrixView() { DataContext = matrixViewModel };
             matrixView.Show();
         }

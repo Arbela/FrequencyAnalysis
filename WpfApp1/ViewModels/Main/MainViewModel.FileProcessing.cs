@@ -18,12 +18,22 @@ namespace FrequencyAnalysis
         private async void SaveFramesCommandExecuted(int framesPerSec)
         {
             var dlg = new VistaFolderBrowserDialog();
-            if (dlg.ShowDialog() == true && !string.IsNullOrWhiteSpace(dlg.SelectedPath) && Directory.Exists(dlg.SelectedPath))
+            dlg.ShowDialog();
+
+            if (string.IsNullOrWhiteSpace(dlg.SelectedPath)) return;
+
+            try
             {
+                this.IsBusy = true;
+
                 await Task.Run(() =>
                 {
                     this.imageRetriever.RetrieveImages(this.Mp4Path, dlg.SelectedPath, framesPerSec);
                 });
+            }
+            finally
+            {
+                this.IsBusy = false;
             }
         }
     }
