@@ -1,15 +1,12 @@
-﻿using CsvHelper;
-using FrequencyAnalysis.Helpers;
-using GalaSoft.MvvmLight.Command;
+﻿using FrequencyAnalysis.Helpers;
+using GalaSoft.MvvmLight.CommandWpf;
 using Ookii.Dialogs.Wpf;
 using OxyPlot;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
 
 namespace FrequencyAnalysis
 {

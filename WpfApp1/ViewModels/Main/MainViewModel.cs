@@ -2,11 +2,11 @@
 using FrequencyAnalysis.Interfaces;
 using FrequencyAnalysis.Models;
 using GalaSoft.MvvmLight;
+using MediaToolkit.Model;
 using Microsoft.Win32;
 using OxyPlot;
 using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.IO;
 using System.Threading.Tasks;
 
@@ -87,6 +87,8 @@ namespace FrequencyAnalysis
                 RaisePropertyChanged(nameof(Mp4Path));
             }
         }
+
+        public MediaFile Mp4 { get; set; }
 
         public double MeasureBlur
         {

@@ -17,5 +17,6 @@
         public const string TxtExt = ".txt";
         public const string CsvExt = ".csv";
         public const string DatExt = "_dat";
+        public readonly string[] AllowedTimeFormats = { "mm\\:ss", "mmss", "hhmmss", "hh\\:mm\\:ss"};
     }
 }

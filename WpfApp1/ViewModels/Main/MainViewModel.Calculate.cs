@@ -16,25 +16,37 @@ namespace FrequencyAnalysis
             get => this.calculateSpectralDensityCommand ?? (this.calculateSpectralDensityCommand = new RelayCommand(CalculateSpectralDensity));
         }
 
-        private void CalculateSpectralDensity()
+        private async void CalculateSpectralDensity()
         {
-            var average = this.linearContraster.CalculateAverage(this.GradientMatrix);
-            var dispersion = this.linearContraster.CalculateDispersion(this.GradientMatrix, average);
-            var variation = this.linearContraster.CalculateVariationCoefficient(average, dispersion);
-
-           var spectralDensity = this.linearContraster.MeasureBlur(variation);
-            var directoryDialog = ShowSaveFileDialog(Constants.TxtFilter, Constants.TxtExtPattern);
-
-            if (!string.IsNullOrEmpty(directoryDialog.FileName))
+            this.IsBusy = true;
+            try
             {
-                using (FileStream fs = File.Create(directoryDialog.FileName))
+                double spectralDensity = 0.0;
+                await Task.Run(() =>
                 {
-                    using (StreamWriter writer = new StreamWriter(fs))
+                    var average = this.linearContraster.CalculateAverage(this.GradientMatrix);
+                    var dispersion = this.linearContraster.CalculateDispersion(this.GradientMatrix, average);
+                    var variation = this.linearContraster.CalculateVariationCoefficient(average, dispersion);
+                    spectralDensity = this.linearContraster.MeasureBlur(variation);
+                });
+                var directoryDialog = ShowSaveFileDialog(Constants.TxtFilter, Constants.TxtExtPattern);
+
+                if (!string.IsNullOrEmpty(directoryDialog.FileName))
+                {
+                    using (FileStream fs = File.Create(directoryDialog.FileName))
                     {
-                        writer.WriteLine(spectralDensity);
+                        using (StreamWriter writer = new StreamWriter(fs))
+                        {
+                            writer.WriteLine(spectralDensity);
+                        }
                     }
                 }
             }
+            finally
+            {
+                this.IsBusy = false;
+            }
+
         }
     }
 }

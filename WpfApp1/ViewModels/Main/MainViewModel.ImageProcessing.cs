@@ -7,14 +7,23 @@ namespace FrequencyAnalysis
 {
     public partial class MainViewModel
     {
-        private RelayCommand<int> blurGeneralCommad;
+        private RelayCommand<int> blurGeneralCommand;
+        private RelayCommand<int> blurVerticalCommand;
+        private RelayCommand<int> blurHorizontalCommand;
         private RelayCommand convertToGrayscaleCommand;
 
 
         public RelayCommand<int> BlurGeneralCommand
         {
-            get => this.blurGeneralCommad ?? (this.blurGeneralCommad = new RelayCommand<int>(BlurGeneralCommandExecuted));
+            get => this.blurGeneralCommand ?? (this.blurGeneralCommand = new RelayCommand<int>(async _ => await ExecuteBlur(true, true)));
         }
+
+        public RelayCommand<int> BlurVerticalCommand =>
+            this.blurVerticalCommand ?? (this.blurVerticalCommand = new RelayCommand<int>(async _ => await ExecuteBlur(true, false)));
+
+
+        public RelayCommand<int> BlurHorizontalCommand =>
+            this.blurHorizontalCommand ?? (this.blurHorizontalCommand = new RelayCommand<int>(async _ => await ExecuteBlur(false, true)));
 
         public RelayCommand ConvertToGrayscaleCommand
         {
@@ -41,41 +50,35 @@ namespace FrequencyAnalysis
             }
         }
 
-        private bool CanExecuteBlurGeneralCommand(int arg)
+        private async Task ExecuteBlur(bool isVertical, bool isHorizontal)
         {
-            return !string.IsNullOrWhiteSpace(this.SelectedImagePath);
-        }
+            if (string.IsNullOrWhiteSpace(this.SelectedImagePath)) return;
 
-        private async void BlurGeneralCommandExecuted(int blockSize)
-        {
-            if (blockSize == 3)
+            var directoryDialog = ShowSaveFileDialog(Constants.BmpFilter, Constants.BmpExtPattern);
+
+            if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
+
+            try
             {
-                var directoryDialog = ShowSaveFileDialog(Constants.BmpFilter, Constants.BmpExtPattern);
+                this.IsBusy = true;
 
-                if (string.IsNullOrEmpty(directoryDialog.FileName)) return;
+                string bitmapPath = directoryDialog.FileName;
 
-                try
+                await Task.Run(() =>
                 {
-                    this.IsBusy = true;
+                    this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(this.SelectedImagePath);
+                    this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix, isVertical, isHorizontal);
+                    this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
 
-                    string bitmapPath = directoryDialog.FileName;
+                    var blurBitmap = this.imageProvider.CreateBitmapFromPixelMartix(this.LinearContrastMatrix);
+                    blurBitmap.Save(bitmapPath, ImageFormat.Bmp);
+                });
 
-                    await Task.Run(() =>
-                    {
-                        this.PixelsMatrix = this.imageProvider.GetBitmapPixelsMatrix(this.SelectedImagePath);
-                        this.GradientMatrix = this.gradientMatrixBuilder.BuildGradientMatrix(this.PixelsMatrix);
-                        this.LinearContrastMatrix = this.linearContraster.BuildLinearContrastMatrix(this.GradientMatrix);
-
-                        var blurBitmap = this.imageProvider.CreateBitmapFromPixelMartix(this.LinearContrastMatrix);
-                        blurBitmap.Save(bitmapPath, ImageFormat.Bmp);
-                    });
-
-                    this.SelectedImagePath = bitmapPath;
-                }
-                finally
-                {
-                    this.IsBusy = false;
-                }
+                this.SelectedImagePath = bitmapPath;
+            }
+            finally
+            {
+                this.IsBusy = false;
             }
         }
 

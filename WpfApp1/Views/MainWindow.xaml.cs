@@ -1,5 +1,4 @@
-﻿using FrequencyAnalysis;
-using FrequencyAnalysis.Models;
+﻿using FrequencyAnalysis.Models;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -12,6 +11,7 @@ namespace FrequencyAnalysis
     public partial class MainWindow : Window
     {
         private MainViewModel viewModel;
+        private const int secondsToElapse = 10;
 
         public MainWindow()
         {
@@ -89,6 +89,20 @@ namespace FrequencyAnalysis
             }
 
             mePlayer.IsMuted = !mePlayer.IsMuted;
+        }
+
+        private void backward10sec_Click(object sender, RoutedEventArgs e)
+        {
+            if (!mePlayer.NaturalDuration.HasTimeSpan) return;
+
+            mePlayer.Position -= TimeSpan.FromSeconds(Math.Min(mePlayer.Position.TotalSeconds, secondsToElapse));
+        }
+
+        private void forward10sec_Click(object sender, RoutedEventArgs e)
+        {
+            if (!mePlayer.NaturalDuration.HasTimeSpan) return;
+
+            mePlayer.Position += TimeSpan.FromSeconds(Math.Min(mePlayer.NaturalDuration.Subtract(new Duration(mePlayer.Position)).TimeSpan.TotalSeconds, secondsToElapse));
         }
     }
 }

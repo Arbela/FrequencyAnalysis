@@ -5,7 +5,6 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace FrequencyAnalysis
@@ -94,7 +93,13 @@ namespace FrequencyAnalysis
             }
         }
 
-        private void ImageCloseCommandExecuted() => this.SelectedImagePath = null;
+        private void ImageCloseCommandExecuted()
+        {
+            this.SelectedImagePath = null;
+            this.PixelsMatrix = null;
+            this.GradientMatrix = null;
+            this.LinearContrastMatrix = null;
+        }
 
         private bool CanExecuteSelectedImagePathRelatedCommand() => !string.IsNullOrWhiteSpace(this.SelectedImagePath);
     }

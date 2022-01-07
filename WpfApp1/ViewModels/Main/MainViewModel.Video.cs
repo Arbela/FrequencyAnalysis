@@ -1,9 +1,10 @@
 ﻿using FrequencyAnalysis.Helpers;
 using GalaSoft.MvvmLight.CommandWpf;
+using MediaToolkit;
+using MediaToolkit.Model;
 using Microsoft.Win32;
 using System;
 using System.Linq;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace FrequencyAnalysis
@@ -11,18 +12,38 @@ namespace FrequencyAnalysis
     public partial class MainViewModel
     {
         private bool isVideoUploaded;
+        private string videoProcessingStart;
+        private string videoProcessingEnd;
         private ICommand openVideoCommand;
         private ICommand closeVideoCommand;
-        private RelayCommand<object> playVideoCommand;
-        private RelayCommand<object> stopVideoCommand;
 
         public bool IsVideoUploaded
         {
-            get => isVideoUploaded;
+            get => this.isVideoUploaded;
             set
             {
-                isVideoUploaded = value;
+                this.isVideoUploaded = value;
                 RaisePropertyChanged(nameof(IsVideoUploaded));
+            }
+        }
+
+        public string VideoProcessingStart
+        {
+            get => this.videoProcessingStart;
+            set
+            {
+                this.videoProcessingStart = value;
+                RaisePropertyChanged(nameof(VideoProcessingStart));
+            }
+        }
+
+        public string VideoProcessingEnd
+        {
+            get => this.videoProcessingEnd;
+            set
+            {
+                this.videoProcessingEnd = value;
+                RaisePropertyChanged(nameof(VideoProcessingEnd));
             }
         }
 
@@ -36,37 +57,12 @@ namespace FrequencyAnalysis
             get => this.closeVideoCommand ?? (this.closeVideoCommand = new RelayCommand(CloseVideoCommandExecuted));
         }
 
-        public RelayCommand<object> PlayVideoCommand
-        {
-            get => this.playVideoCommand ?? (this.playVideoCommand = new RelayCommand<object>(PlayVideoCommandExecuted, (obj) => this.IsVideoUploaded));
-        }
-
-        public RelayCommand<object> StopVideoCommand
-        {
-            get => this.stopVideoCommand ?? (this.stopVideoCommand = new RelayCommand<object>(StopVideoCommandExecuted, (obj) => this.IsVideoUploaded));
-        }
-
-        private void StopVideoCommandExecuted(object obj)
-        {
-            var mediaElement = obj as MediaElement;
-
-            if (mediaElement == null) return;
-
-            mediaElement.Stop();
-        }
-
-        private void PlayVideoCommandExecuted(object obj)
-        {
-            var mediaElement = obj as MediaElement;
-
-            if (mediaElement == null) return;
-
-            mediaElement.Play();
-        }
-
         private void CloseVideoCommandExecuted()
         {
             this.Mp4Path = null;
+            this.Mp4 = null;
+            this.VideoProcessingStart = null;
+            this.VideoProcessingEnd = null;
             this.IsVideoUploaded = false;
         }
 
@@ -81,6 +77,13 @@ namespace FrequencyAnalysis
             if (fileDialog.FileNames.Any())
             {
                 this.Mp4Path = fileDialog.FileName;
+                using (var engine = new Engine())
+                {
+                    this.Mp4 = new MediaFile { Filename = this.Mp4Path };
+                    engine.GetMetadata(Mp4);
+                }
+                this.VideoProcessingStart = TimeSpan.Zero.ToString("mm\\:ss");
+                this.VideoProcessingEnd = Mp4.Metadata.Duration.ToString("mm\\:ss");
                 this.IsVideoUploaded = true;
             }
         }

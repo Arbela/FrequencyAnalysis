@@ -12,15 +12,18 @@ namespace FrequencyAnalysis
 
         public ImageRetriever() { }
 
-        public void RetrieveImages(string mp4FilePath, string outputPath, int framesPerSec = 1)
+        public void RetrieveImages(string mp4FilePath, string outputPath, int framesPerSec = 1, TimeSpan? from = null, TimeSpan? to = null)
         {
             using (var engine = new Engine())
             {
                 var mp4 = new MediaFile { Filename = mp4FilePath };
 
+                var start = from.HasValue ? Convert.ToInt32(from.Value.TotalMilliseconds) : 0;
+                var end = to.HasValue ? to.Value.TotalMilliseconds : mp4.Metadata.Duration.TotalMilliseconds;
+
                 engine.GetMetadata(mp4);
 
-                for (int i = 0; i < mp4.Metadata.Duration.TotalMilliseconds; i+= millisecondsInMinute / framesPerSec)
+                for (int i = start; i < end; i+= millisecondsInMinute / framesPerSec)
                 {
                     var options = new ConversionOptions { Seek = TimeSpan.FromMilliseconds(i)};
                     var outputFile = new MediaFile { Filename = string.Format($"{Constants.ImageName}{Constants.JpgExt}", outputPath, $"{i / millisecondsInMinute}_{i % millisecondsInMinute}") };

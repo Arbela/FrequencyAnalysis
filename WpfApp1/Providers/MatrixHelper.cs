@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace FrequencyAnalysis
@@ -118,6 +119,20 @@ namespace FrequencyAnalysis
             }
 
             return array;
+        }
+
+        private static string Format3Position(string value)
+        {
+            if (value.Length == 1)
+            {
+                return $"  {value}";
+            }
+            if (value.Length == 2)
+            {
+                return $" {value}";
+            }
+
+            return value;
         }
 
     }
