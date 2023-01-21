@@ -17,42 +17,49 @@
         <Border x:Name="b"
                 Margin="10" 
                 Width="Auto"
-                Height="Auto"
-                BorderThickness="1"
-                BorderBrush="{StaticResource AccentBlue}">
-            <StackPanel VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch"
-                        MaxHeight="{Binding MaxHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}">
+                Height="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <Button Content="Select Left Image" 
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Height="Auto"
-                        Width="auto"
+                        Height="24"
+                        Width="100"
+                        IsEnabled="{Binding Left, Converter={StaticResource InvertedStringToBoolConverter}}"
                         Command="{Binding SelectLeftImageCommand}"/>
-                <Border Height="auto" Width="auto"
-                         MaxHeight="{Binding MaxHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}">
-                    <Image Source="{Binding Left, Mode=TwoWay}"
-                            MaxHeight="{Binding MaxHeight, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=Border}}"/>
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource AccentBlue}">
+                    <Image Source="{Binding Left, Mode=TwoWay}"/>
                 </Border>
-            </StackPanel>
+            </Grid>
         </Border>
 
         <Border Margin="10" 
                 Grid.Column="1"
                 Width="Auto"
-                Height="Auto"
-                BorderThickness="1"
-                BorderBrush="{StaticResource AccentBlue}">
-            <StackPanel VerticalAlignment="Stretch"
-                        HorizontalAlignment="Stretch">
+                Height="Auto">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
                 <Button Content="Select Right Image" 
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Height="Auto" 
-                        Width="auto"
+                        Height="24"
+                        Width="110"
+                        IsEnabled="{Binding Right, Converter={StaticResource InvertedStringToBoolConverter}}"
                         Command="{Binding SelectRightImageCommand}"/>
-                <Image Source="{Binding Right, Mode=TwoWay}"/>
-            </StackPanel>
+                <Border Grid.Row="1"
+                        BorderThickness="2"
+                        BorderBrush="{StaticResource AccentBlue}">
+                    <Image Source="{Binding Right, Mode=TwoWay}"/>
+                </Border>
+            </Grid>
         </Border>
 
     </Grid>

@@ -1,4 +1,5 @@
 ﻿using FrequencyAnalysis.ViewModels;
+using System;
 using System.Windows;
 
 namespace FrequencyAnalysis.Views
@@ -12,6 +13,12 @@ namespace FrequencyAnalysis.Views
         {
             InitializeComponent();
             this.DataContext = new CompareWindowViewModel();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            (DataContext as CompareWindowViewModel).Dispose();
+            base.OnClosed(e);
         }
     }
 }

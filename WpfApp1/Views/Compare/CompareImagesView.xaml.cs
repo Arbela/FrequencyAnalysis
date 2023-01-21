@@ -1,4 +1,6 @@
-﻿using System.Windows.Controls;
+﻿using System;
+using System.Windows.Controls;
+using FrequencyAnalysis.ViewModels;
 
 namespace FrequencyAnalysis.Views
 {

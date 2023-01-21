@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>FrequencyAnalysis</RootNamespace>
     <AssemblyName>FrequencyAnalysis</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -118,9 +119,12 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Controls\ClickableImageControl.cs" />
+    <Compile Include="Converters\InvertedStringToBoolConverter.cs" />
+    <Compile Include="Converters\StringToVisibilityConverter.cs" />
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
     <Compile Include="Models\MatrixVisualizationEventArgs.cs" />
     <Compile Include="Providers\CSVWriter.cs" />
+    <Compile Include="Providers\DialogService.cs" />
     <Compile Include="ViewModels\Compare\CompareViewModel.cs" />
     <Compile Include="ViewModels\Compare\CompareWindowViewModel.cs" />
     <Compile Include="Views\ChartView.xaml.cs">

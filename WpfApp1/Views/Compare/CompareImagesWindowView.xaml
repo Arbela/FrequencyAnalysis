@@ -51,6 +51,31 @@
         </StackPanel>
 
         <local:CompareImagesView Grid.Row="1" DataContext="{Binding CompareViewModel, UpdateSourceTrigger=PropertyChanged}"/>
+        
+        <Border Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                Height="Auto"
+                Width="Auto"
+                Background="{StaticResource AccentGrayLight}"
+                Opacity="0.5"
+                Grid.RowSpan="2">
+        </Border>
+
+        <Border Visibility="{Binding IsBusy, Converter={StaticResource BoolToVisibilityConverter}}"
+                Height="Auto"
+                Width="Auto"
+                Background="Transparent"
+                Grid.RowSpan="2">
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Text="Loading..."
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
+                <ProgressBar IsIndeterminate="True"
+                             Height="15" Width="250"
+                             Foreground="{StaticResource AccentBlue}"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Border>
 
     </Grid>
 </Window>

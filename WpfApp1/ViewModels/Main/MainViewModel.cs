@@ -20,7 +20,7 @@ namespace FrequencyAnalysis
         private string importedFromFileImagePath;
         private string selectedImageFormat;
         private string mp4Path;
-        private double measureBlur;
+        private double measureFormParameter;
         private int[][] pixelsMatrix;
         private int[][] gradientMatrix;
         private int[][] linearContrastMatrix;
@@ -90,13 +90,13 @@ namespace FrequencyAnalysis
 
         public MediaFile Mp4 { get; set; }
 
-        public double MeasureBlur
+        public double MeasureFormParameter
         {
-            get => this.measureBlur;
+            get => this.measureFormParameter;
             set
             {
-                this.measureBlur = value;
-                RaisePropertyChanged(nameof(MeasureBlur));
+                this.measureFormParameter = value;
+                RaisePropertyChanged(nameof(MeasureFormParameter));
             }
         }
 

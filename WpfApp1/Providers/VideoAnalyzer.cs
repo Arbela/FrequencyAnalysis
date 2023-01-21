@@ -70,7 +70,7 @@ namespace FrequencyAnalysis
 
             int[][] linearContrastMatrix = linearContraster.BuildLinearContrastMatrix(gradientMatrix);
 
-            blur = MeasureBlur(linearContrastMatrix);
+            blur = MeasureFormParameter(linearContrastMatrix);
 
             semaphore.Release();
 
@@ -122,7 +122,7 @@ namespace FrequencyAnalysis
             return Directory.CreateDirectory($"{outputPath}_Grayscale_{DateTime.Now.ToString("dd_MM_yy_HH_mm_ss")}").FullName;
         }
 
-        private double MeasureBlur(int[][] linearContrastMatrix)
+        private double MeasureFormParameter(int[][] linearContrastMatrix)
         {
             var average = this.linearContraster.CalculateAverage(linearContrastMatrix);
             var dispersion = this.linearContraster.CalculateDispersion(linearContrastMatrix, average);
