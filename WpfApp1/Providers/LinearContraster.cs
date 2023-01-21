@@ -108,9 +108,23 @@ namespace FrequencyAnalysis
             return linearContrastMatrix;
         }
 
-        public double MeasureBlur(double linearContrast)
+        //eta
+        public double MeasureFormParameter(double variation)
         {
-            return Math.Pow(linearContrast, -1.086);
+            return Math.Pow(variation, -1.086);
+        }
+
+        //lambda
+        public double MeasureScaleParameter(double average, double dispersion)
+        {
+            var sqrtDispersion = Math.Sqrt(dispersion);
+            return Math.Pow(average, 1.086) / Math.Pow(sqrtDispersion, 0.086);
+        }
+
+        //W^2
+        public double CalculateClosure(double variation1, double variation2, double scale1, double scale2)
+        {
+            return (Math.Min(variation1, variation2) * Math.Min(scale1, scale2)) / (Math.Max(variation1, variation2) * Math.Max(scale1, scale2));
         }
     }
 }

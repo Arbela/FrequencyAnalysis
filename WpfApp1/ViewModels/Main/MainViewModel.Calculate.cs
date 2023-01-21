@@ -27,7 +27,7 @@ namespace FrequencyAnalysis
                     var average = this.linearContraster.CalculateAverage(this.GradientMatrix);
                     var dispersion = this.linearContraster.CalculateDispersion(this.GradientMatrix, average);
                     var variation = this.linearContraster.CalculateVariationCoefficient(average, dispersion);
-                    spectralDensity = this.linearContraster.MeasureBlur(variation);
+                    spectralDensity = this.linearContraster.MeasureFormParameter(variation);
                 });
                 var directoryDialog = ShowSaveFileDialog(Constants.TxtFilter, Constants.TxtExtPattern);
 

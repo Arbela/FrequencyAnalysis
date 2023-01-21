@@ -1,4 +1,5 @@
 ﻿using FrequencyAnalysis.Models;
+using FrequencyAnalysis.Views;
 using System;
 using System.Windows;
 using System.Windows.Threading;
@@ -103,6 +104,12 @@ namespace FrequencyAnalysis
             if (!mePlayer.NaturalDuration.HasTimeSpan) return;
 
             mePlayer.Position += TimeSpan.FromSeconds(Math.Min(mePlayer.NaturalDuration.Subtract(new Duration(mePlayer.Position)).TimeSpan.TotalSeconds, secondsToElapse));
+        }
+
+        private void CompareImages_Click(object sender, RoutedEventArgs e)
+        {
+            var compareWindow = new CompareImagesWindowView();
+            compareWindow.Show();
         }
     }
 }

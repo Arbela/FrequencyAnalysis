@@ -256,5 +256,25 @@
         </Setter>
     </Style>
 
+    <BitmapImage 
+    x:Key="Image_Background" 
+    UriSource="../Resources/insert_mage_icon.png" />
 
+
+    <Style TargetType="{x:Type controls:ClickableImageControl}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:ClickableImageControl}">
+                    <Border Background="{TemplateBinding Background}"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}">
+                        <StackPanel>
+                            <Button x:Name="button"/>
+                            <Image x:Name="image"/>
+                        </StackPanel>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

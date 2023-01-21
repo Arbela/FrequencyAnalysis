@@ -1,6 +1,5 @@
 ﻿using System;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace FrequencyAnalysis
@@ -34,7 +33,7 @@ namespace FrequencyAnalysis
         {
             T[][] subMatrix = new T[blockSize][];
 
-            for (int k = 0; k < 3; ++k)
+            for (int k = 0; k < blockSize; ++k)
             {
                 subMatrix[k] = new T[blockSize];
 

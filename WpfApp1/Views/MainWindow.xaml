@@ -132,6 +132,24 @@
                             </MenuItem>
                         </Menu>
                     </Button>
+
+            <Line Stroke="{StaticResource AccentBlue}"
+                  Height="Auto"
+                  VerticalAlignment="Center"
+                  Margin="10 0 10 0"
+                  StrokeThickness="1"
+                  X1="0"
+                  X2="0"
+                  Y1="20"
+                  Y2="0"/>
+
+                    <Button Margin="10">
+                        <Menu>
+                            <MenuItem Header="Similarity" Style="{StaticResource MainMenuItemStyle}">
+                                <MenuItem Header="Compare Images" Click="CompareImages_Click"/>
+                            </MenuItem>
+                        </Menu>
+                    </Button>
                 </StackPanel>
 
             </Border>

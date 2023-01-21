@@ -128,7 +128,7 @@ namespace FrequencyAnalysis
             var dispersion = this.linearContraster.CalculateDispersion(linearContrastMatrix, average);
             var variation = this.linearContraster.CalculateVariationCoefficient(average, dispersion);
 
-            return this.linearContraster.MeasureBlur(variation);
+            return this.linearContraster.MeasureFormParameter(variation);
         }
     }
 }

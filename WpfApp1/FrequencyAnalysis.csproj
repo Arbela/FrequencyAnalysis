@@ -117,9 +117,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\ClickableImageControl.cs" />
     <Compile Include="Converters\InvertedBoolToVisibilityConverter.cs" />
     <Compile Include="Models\MatrixVisualizationEventArgs.cs" />
     <Compile Include="Providers\CSVWriter.cs" />
+    <Compile Include="ViewModels\Compare\CompareViewModel.cs" />
+    <Compile Include="ViewModels\Compare\CompareWindowViewModel.cs" />
     <Compile Include="Views\ChartView.xaml.cs">
       <DependentUpon>ChartView.xaml</DependentUpon>
     </Compile>
@@ -129,6 +132,12 @@
     <Compile Include="Providers\ImageRetriever.cs" />
     <Compile Include="Providers\LinearContraster.cs" />
     <Compile Include="Providers\MatrixHelper.cs" />
+    <Compile Include="Views\Compare\CompareImagesView.xaml.cs">
+      <DependentUpon>CompareImagesView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Compare\CompareImagesWindowView.xaml.cs">
+      <DependentUpon>CompareImagesWindowView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MatrixView.xaml.cs">
       <DependentUpon>MatrixView.xaml</DependentUpon>
     </Compile>
@@ -147,6 +156,14 @@
     <Page Include="Views\ChartView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Compare\CompareImagesView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Compare\CompareImagesWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +216,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\insert_mage_icon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

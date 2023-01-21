@@ -1,0 +1,56 @@
+﻿<Window x:Class="FrequencyAnalysis.Views.CompareImagesWindowView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:vm="clr-namespace:FrequencyAnalysis.ViewModels"        
+        xmlns:local="clr-namespace:FrequencyAnalysis.Views"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=vm:CompareWindowViewModel, IsDesignTimeCreatable=True}"
+        WindowState="Maximized"
+        Title="Compare Images" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal"
+                    Margin="10">
+            <Button>
+                <Menu>
+                    <MenuItem Header="Images" Style="{StaticResource MainMenuItemStyle}">
+                        <MenuItem Header="Clear" Command="{Binding ClearImagesCommand}"/>
+                    </MenuItem>
+                </Menu>
+            </Button>
+            <Button Height="Auto" Width="Auto" Margin="10">
+                <Menu>
+                    <MenuItem Header="Processing" Style="{StaticResource MainMenuItemStyle}">
+                        <MenuItem Header="Convert (8 bit .bmp)" Command="{Binding ConvertToGrayscaleCommand}"/>
+                        <MenuItem Header="Blur General">
+                            <MenuItem Header="Block Size">
+                                <MenuItem Header="3x3" Command="{Binding BlurGeneralCommand}" CommandParameter="3"/>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Blur Vertical">
+                            <MenuItem Header="Block Size">
+                                <MenuItem Header="3x3" Command="{Binding BlurVerticalCommand}" CommandParameter="3"/>
+                            </MenuItem>
+                        </MenuItem>
+                        <MenuItem Header="Blur Horizontal">
+                            <MenuItem Header="Block Size">
+                                <MenuItem Header="3x3" Command="{Binding BlurHorizontalCommand}" CommandParameter="3"/>
+                            </MenuItem>
+                        </MenuItem>
+                    </MenuItem>
+                </Menu>
+            </Button>
+        </StackPanel>
+
+        <local:CompareImagesView Grid.Row="1" DataContext="{Binding CompareViewModel, UpdateSourceTrigger=PropertyChanged}"/>
+
+    </Grid>
+</Window>
