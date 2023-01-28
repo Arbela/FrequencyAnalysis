@@ -214,7 +214,7 @@ namespace FrequencyAnalysis.ViewModels
 
         private void ExportToTxt(double left, double right, string path)
         {
-            string fileName = $"{path}\\Sequence{Constants.TxtExt}";
+            string fileName = $"{path}{Constants.TxtExt}";
 
             using (FileStream fs = File.Create(fileName))
             {
@@ -228,7 +228,7 @@ namespace FrequencyAnalysis.ViewModels
 
         private async void ExportToCsv(double left, double right, string path)
         {
-            string fileName = $"{path}\\Sequence{Constants.CsvExt}";
+            string fileName = $"{path}{Constants.CsvExt}";
             CSVWriter csvWriter = new CSVWriter(fileName);
             await csvWriter.Write(new Similarity
             {

@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:vm="clr-namespace:FrequencyAnalysis"
         xmlns:local="clr-namespace:FrequencyAnalysis"
-        xmlns:oxy="http://oxyplot.org/wpf"
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="Image Structure Analyze"

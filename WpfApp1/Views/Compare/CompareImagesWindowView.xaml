@@ -19,14 +19,14 @@
                     VerticalAlignment="Center"
                     Orientation="Horizontal"
                     Margin="10">
-            <Button>
+            <Button Height="24">
                 <Menu>
                     <MenuItem Header="Images" Style="{StaticResource MainMenuItemStyle}">
                         <MenuItem Header="Clear" Command="{Binding ClearImagesCommand}"/>
                     </MenuItem>
                 </Menu>
             </Button>
-            <Button Height="Auto" Width="Auto" Margin="10">
+            <Button Height="24" Width="Auto" Margin="10">
                 <Menu>
                     <MenuItem Header="Processing" Style="{StaticResource MainMenuItemStyle}">
                         <MenuItem Header="Convert (8 bit .bmp)" Command="{Binding ConvertToGrayscaleCommand}"/>
